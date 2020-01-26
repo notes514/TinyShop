@@ -1,4 +1,4 @@
-package com.laodai.tinyshop.app;
+package com.laodai.tinyshop;
 
 import android.app.Application;
 
@@ -12,7 +12,9 @@ import android.app.Application;
  * </pre>
  */
 public class InitApp extends Application {
+    //入口日志常量
     public static final String TAG = "InitApp";
+    //单例
     private static InitApp instance = null;
 
     public static InitApp getInstance() {

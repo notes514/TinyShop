@@ -2,7 +2,7 @@ package com.laodai.tinyshop.util;
 
 import android.widget.Toast;
 
-import com.laodai.tinyshop.app.InitApp;
+import com.laodai.tinyshop.InitApp;
 
 /**
  * <pre>
