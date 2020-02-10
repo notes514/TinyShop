@@ -14,7 +14,7 @@ public class RxUrlManger {
     //单例
     private volatile static RxUrlManger instance;
     //默认URL的key
-    private static String DEFAULT_URL_KEY = "default_url_key";
+    public static String DEFAULT_URL_KEY = "default_url_key";
     //mapURL
     private Map<String, String> urlMap;
 

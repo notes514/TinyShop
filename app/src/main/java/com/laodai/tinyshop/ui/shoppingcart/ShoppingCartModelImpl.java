@@ -1,11 +1,5 @@
 package com.laodai.tinyshop.ui.shoppingcart;
 
-import com.laodai.tinyshop.entity.ScenicSpot;
-import com.laodai.tinyshop.mvp.MvpListener;
-import com.laodai.tinyshop.ui.home.HomeContract;
-
-import java.util.List;
-
 /**
  * <pre>
  *     author : laodai

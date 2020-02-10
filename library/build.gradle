@@ -40,15 +40,13 @@ dependencies {
     //必要的retrofit2依赖，与rxjava2结合
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     //解析json字符
-
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
     implementation 'com.squareup.retrofit2:converter-scalars:2.4.0'
     //adapter-rxjava2
     //OKHttp网络请求框架
     implementation("com.squareup.okhttp3:okhttp:4.2.1")
-    testImplementation("com.squareup.okhttp3:mockwebserver:4.2.1")
     //OKHttp请求日志拦截器
-    //implementation 'com.squareup.ozkhttp3:logging-interceptor:3.12.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
     //Rx生命周期
     implementation 'com.trello.rxlifecycle3:rxlifecycle-components:3.1.0'
 }

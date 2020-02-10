@@ -1,13 +1,9 @@
 package com.laodai.tinyshop.ui.shoppingcart;
 
 
-import com.laodai.tinyshop.entity.ScenicSpot;
 import com.laodai.tinyshop.mvp.BaseModel;
 import com.laodai.tinyshop.mvp.BasePresenter;
 import com.laodai.tinyshop.mvp.BaseView;
-import com.laodai.tinyshop.mvp.MvpListener;
-
-import java.util.List;
 
 /**
  * <pre>
