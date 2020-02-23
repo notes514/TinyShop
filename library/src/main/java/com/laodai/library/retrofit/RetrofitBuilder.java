@@ -55,7 +55,6 @@ public class RetrofitBuilder {
     public Retrofit build() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(baseUrl);
-
         if (callAdapterFactory == null || callAdapterFactory.length <= 0) {
             builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         } else {
@@ -63,7 +62,6 @@ public class RetrofitBuilder {
                 builder.addCallAdapterFactory(factory);
             }
         }
-
         if (converterFactory == null || converterFactory.length <= 0) {
             builder.addConverterFactory(ScalarsConverterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create(GsonAdapter.buildGson()));
@@ -72,7 +70,6 @@ public class RetrofitBuilder {
                 builder.addConverterFactory(factory);
             }
         }
-
         if (mOkHttpClient == null) {
             builder.client(createOkHttpClient());
         } else {

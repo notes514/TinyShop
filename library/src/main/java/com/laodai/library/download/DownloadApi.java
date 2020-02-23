@@ -14,13 +14,15 @@ import retrofit2.http.Url;
  * @Version: ：1.0
  */
 public interface DownloadApi {
+
     /**
      * 大文件官方建议用'@Streaming'来进行注解，不然会出现IO异常，小文件可以忽略不注入
      *
-     * @param fileUrl fileUrl地址
+     * @param fileUrl fileUrl地址（动态传入）
      * @return ResponseBody
      */
     @Streaming
     @GET
     Observable<ResponseBody> downloadFiles(@Url String fileUrl);
+
 }

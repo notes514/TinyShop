@@ -1,6 +1,10 @@
 package com.laodai.library.download;
 
+import com.laodai.library.factory.ApiFactory;
+import com.laodai.library.helper.RxTransformer;
+
 import io.reactivex.Observable;
+import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 
 /**
@@ -15,15 +19,14 @@ public class DownloadHelper {
     public static Observable<ResponseBody> downloadFile(String fileUrl) {
         //默认文件下载的key
         String DEFAULT_DOWNLOAD_KEY = "defaultDownloadUrlKey";
+        //默认文件下载的baseUrl
         String DEFAULT_BASE_URL = "https://api.github.com/";
-        return null;
-//        String DEFAULT_DOWNLOAD_KEY = "defaultDownloadUrlKey";
-//        String DEFAULT_BASE_URL = "https://api.github.com/";
-//        return ApiFactory.getInstance()
-//                .setOkClient(new OkHttpClient.Builder().addInterceptor(new DownloadInterceptor()).build())
-//                .createApi(DEFAULT_DOWNLOAD_KEY, DEFAULT_BASE_URL, DownloadApi.class)
-//                .downloadFile(fileUrl)
-//                .compose(Transformer.<ResponseBody>switchSchedulers());
+        return ApiFactory.getInstance().setOkClient(new OkHttpClient.Builder()
+                .addInterceptor(new DownLoadInterceptor())
+                .build())
+                .createApi(DEFAULT_DOWNLOAD_KEY, DEFAULT_BASE_URL, DownloadApi.class)
+                .downloadFiles(fileUrl)
+                .compose(RxTransformer.<ResponseBody>switchSchedulers());
     }
 
 }

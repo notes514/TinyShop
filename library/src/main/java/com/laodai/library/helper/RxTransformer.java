@@ -1,4 +1,4 @@
-package com.laodai.library.interceptor;
+package com.laodai.library.helper;
 
 import android.content.Context;
 
@@ -31,6 +31,7 @@ import io.reactivex.schedulers.Schedulers;
  * @Version: ：1.0
  */
 public class RxTransformer {
+
     /**
      * 无参数(无生命周期)
      *
@@ -79,13 +80,25 @@ public class RxTransformer {
 
     /**
      * 在Activity中使用(含网络请求生命周期)
+     * 无加载框
+     *
+     * @param context 上下文
+     * @param <T> 泛型
+     * @return ObservableTransformer
+     */
+    public static <T> ObservableTransformer<T, T> observableAIOMain(final Context context) {
+        return observableAIOMain(context, null);
+    }
+
+    /**
+     * 在Activity中使用(含网络请求生命周期)
      *
      * @param context 上下文
      * @param loadingView 加载框
      * @param <T> 泛型
      * @return ObservableTransformer
      */
-    public static <T> ObservableTransformer<T, T> observableIOMain(final Context context,
+    public static <T> ObservableTransformer<T, T> observableAIOMain(final Context context,
                                                                    final ILoadingView loadingView) {
         return new ObservableTransformer<T, T>() {
             @Override
@@ -120,11 +133,22 @@ public class RxTransformer {
      * 在Fragment中使用(含网络请求生命周期)
      *
      * @param fragment 当前fragment
+     * @param <T> 泛型
+     * @return ObservableTransformer
+     */
+    public static <T> ObservableTransformer<T, T> observableFIOMain(final RxFragment fragment) {
+        return observableFIOMain(fragment, null);
+    }
+
+    /**
+     * 在Fragment中使用(含网络请求生命周期)
+     *
+     * @param fragment 当前fragment
      * @param loadingView 加载框
      * @param <T> 泛型
      * @return ObservableTransformer
      */
-    public static <T> ObservableTransformer<T, T> observableIOMain(final RxFragment fragment,
+    public static <T> ObservableTransformer<T, T> observableFIOMain(final RxFragment fragment,
                                                                    final ILoadingView loadingView) {
         return new ObservableTransformer<T, T>() {
             @Override

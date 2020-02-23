@@ -48,18 +48,6 @@ public class SSLUtils {
             return new java.security.cert.X509Certificate[]{};
         }
     };
-    /**
-     * 此类事用于主机名验证的机接口。
-     * 在握手期间，如果URL的主机名和服务器的主机名标识不匹配，则验证机制可以回调此接口的实现程序来确定是否应该
-     * 允许此连接。策略可以是基于证书的或依赖于其他验证方案。当验证URL主机名使用的默认规则失败时使用这些回调。
-     * 如果主机名是可接受的，则返回true
-     */
-    public static HostnameVerifier UnSafeHostnameVerifier = new HostnameVerifier() {
-        @Override
-        public boolean verify(String s, SSLSession sslSession) {
-            return true;
-        }
-    };
 
     public static SSLParams getSslSocketFactory() {
         return getSslSocketFactoryBase(null, null, null);
@@ -235,6 +223,18 @@ public class SSLUtils {
         }
         return null;
     }
+    /**
+     * 此类事用于主机名验证的机接口。
+     * 在握手期间，如果URL的主机名和服务器的主机名标识不匹配，则验证机制可以回调此接口的实现程序来确定是否应该
+     * 允许此连接。策略可以是基于证书的或依赖于其他验证方案。当验证URL主机名使用的默认规则失败时使用这些回调。
+     * 如果主机名是可接受的，则返回true
+     */
+    public static HostnameVerifier UnSafeHostnameVerifier = new HostnameVerifier() {
+        @Override
+        public boolean verify(String s, SSLSession sslSession) {
+            return true;
+        }
+    };
 
     public static class SSLParams {
         //默认的 SSLSocketFactory 校验服务器
@@ -242,17 +242,5 @@ public class SSLUtils {
         //校验服务器的证书
         public X509TrustManager trustManager;
     }
-
-//    /**
-//     * 此类是用于主机名验证的基接口。 在握手期间，如果 URL 的主机名和服务器的标识主机名不匹配，
-//     * 则验证机制可以回调此接口的实现程序来确定是否应该允许此连接。策略可以是基于证书的或依赖于其他验证方案。
-//     * 当验证 URL 主机名使用的默认规则失败时使用这些回调。如果主机名是可接受的，则返回 true
-//     */
-//    public static HostnameVerifier UnSafeHostnameVerifier = new HostnameVerifier() {
-//        @Override
-//        public boolean verify(String hostname, SSLSession session) {
-//            return true;
-//        }
-//    };
 
 }

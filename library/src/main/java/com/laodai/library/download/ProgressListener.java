@@ -8,6 +8,7 @@ package com.laodai.library.download;
  * @Version: ：1.0
  */
 public interface ProgressListener {
+
     /**
      * 下载进度监听
      *
