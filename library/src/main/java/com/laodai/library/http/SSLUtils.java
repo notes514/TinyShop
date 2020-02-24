@@ -1,5 +1,6 @@
 package com.laodai.library.http;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 import java.io.IOException;
@@ -31,21 +32,17 @@ import javax.net.ssl.X509TrustManager;
 public class SSLUtils {
 
     /**
-     * 为了解决客户端不信任服务器数字证书的问题，网络上大部分的解决方案都是让客户端不对证书做任何检查，
-     * 这是一种有很大安全漏洞的办法
+     * 此类事用于主机名验证的机接口。
+     * 在握手期间，如果URL的主机名和服务器的主机名标识不匹配，则验证机制可以回调此接口的实现程序来确定是否应该
+     * 允许此连接。策略可以是基于证书的或依赖于其他验证方案。当验证URL主机名使用的默认规则失败时使用这些回调。
+     * 如果主机名是可接受的，则返回true
      */
-    public static X509TrustManager UnSafeTrustManager = new X509TrustManager() {
-        @Override
-        public void checkClientTrusted(X509Certificate[] x509Certificates, String s) throws CertificateException {
-        }
+    public static HostnameVerifier UnSafeHostnameVerifier = new HostnameVerifier() {
 
+        @SuppressLint("BadHostnameVerifier")
         @Override
-        public void checkServerTrusted(X509Certificate[] x509Certificates, String s) throws CertificateException {
-        }
-
-        @Override
-        public X509Certificate[] getAcceptedIssuers() {
-            return new java.security.cert.X509Certificate[]{};
+        public boolean verify(String s, SSLSession sslSession) {
+            return true;
         }
     };
 
@@ -88,42 +85,27 @@ public class SSLUtils {
     public static SSLParams getSslSocketFactory(InputStream bksFile, String password, InputStream... certificates) {
         return getSslSocketFactoryBase(null, bksFile, password, certificates);
     }
-
     /**
-     * HTTPS双向认证
-     * bksFile和password -> 客户端使用bks证书校验服务端证书
-     * X509TrustManager -> 如果需要自己校验，那么可以自己实现相关校验，如果不需要自己校验，那么传null即可。
-     *
-     * @param bksFile bksFile文件
-     * @param password 密码
-     * @param trustManager trustManager
-     * @return
+     * 为了解决客户端不信任服务器数字证书的问题，网络上大部分的解决方案都是让客户端不对证书做任何检查，
+     * 这是一种有很大安全漏洞的办法
      */
-    public static SSLParams getSslSocketFactory(InputStream bksFile, String password, X509TrustManager trustManager) {
-        return getSslSocketFactoryBase(trustManager, bksFile, password);
-    }
+    private static X509TrustManager UnSafeTrustManager = new X509TrustManager() {
 
-//    private static SSLParams getSslSocketFactoryBase(X509TrustManager trustManager,
-//    InputStream bksFile, String password, InputStream... certificates) {
-//        SSLParams sslParams = new SSLParams();
-//        try {
+        @SuppressLint("TrustAllX509TrustManager")
+        @Override
+        public void checkClientTrusted(X509Certificate[] x509Certificates, String s) throws CertificateException {
+        }
 
-//            // 创建TLS类型的SSLContext对象,使用我们的信任管理器
-//            SSLContext sslContext = SSLContext.getInstance("TLS");
-//            // 用上面得到的trustManagers初始化SSLContext，这样sslContext就会信任keyStore中的证书
-//            // 第一个参数是授权的密钥管理器，用来授权验证，比如授权自签名的证书验证。第二个是被授权的证书管理器，用来验证服务器端的证书
-//            sslContext.init(keyManagers, new TrustManager[]{manager}, null);
-//            // 通过sslContext获取SSLSocketFactory对象
-//            sslParams.sSLSocketFactory = sslContext.getSocketFactory();
-//            sslParams.trustManager = manager;
-//            return sslParams;
-//        } catch (NoSuchAlgorithmException e) {
-//            throw new AssertionError(e);
-//        } catch (KeyManagementException e) {
-//            throw new AssertionError(e);
-//        }
-//    }
-//
+        @SuppressLint("TrustAllX509TrustManager")
+        @Override
+        public void checkServerTrusted(X509Certificate[] x509Certificates, String s) throws CertificateException {
+        }
+
+        @Override
+        public X509Certificate[] getAcceptedIssuers() {
+            return new java.security.cert.X509Certificate[]{};
+        }
+    };
 
     private static SSLParams getSslSocketFactoryBase(X509TrustManager trustManager, InputStream bksFile,
                                                      String password, InputStream... certificates) {
@@ -210,10 +192,24 @@ public class SSLUtils {
     }
 
     /**
+     * HTTPS双向认证
+     * bksFile和password -> 客户端使用bks证书校验服务端证书
+     * X509TrustManager -> 如果需要自己校验，那么可以自己实现相关校验，如果不需要自己校验，那么传null即可。
+     *
+     * @param bksFile bksFile文件
+     * @param password 密码
+     * @param trustManager trustManager
+     * @return SSLParams
+     */
+    public static SSLParams getSslSocketFactory(InputStream bksFile, String password, X509TrustManager trustManager) {
+        return getSslSocketFactoryBase(trustManager, bksFile, password);
+    }
+
+    /**
      * 选择 chooseTrustManager
      *
      * @param trustManagers trustManagers
-     * @return
+     * @return X509TrustManager
      */
     private static X509TrustManager chooseTrustManager(TrustManager[] trustManagers) {
         for (TrustManager trustManager : trustManagers) {
@@ -223,18 +219,6 @@ public class SSLUtils {
         }
         return null;
     }
-    /**
-     * 此类事用于主机名验证的机接口。
-     * 在握手期间，如果URL的主机名和服务器的主机名标识不匹配，则验证机制可以回调此接口的实现程序来确定是否应该
-     * 允许此连接。策略可以是基于证书的或依赖于其他验证方案。当验证URL主机名使用的默认规则失败时使用这些回调。
-     * 如果主机名是可接受的，则返回true
-     */
-    public static HostnameVerifier UnSafeHostnameVerifier = new HostnameVerifier() {
-        @Override
-        public boolean verify(String s, SSLSession sslSession) {
-            return true;
-        }
-    };
 
     public static class SSLParams {
         //默认的 SSLSocketFactory 校验服务器
@@ -242,5 +226,4 @@ public class SSLUtils {
         //校验服务器的证书
         public X509TrustManager trustManager;
     }
-
 }
