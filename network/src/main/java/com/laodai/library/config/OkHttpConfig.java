@@ -32,9 +32,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
  * @Version: ：1.0
  */
 public class OkHttpConfig {
-    //默认缓存大小
+    //默认缓存大小（100MB）
     private static final long defaultCacheSize = 1024 * 1024 * 100;
-    //默认超时时间
+    //默认超时时间（10秒）
     private static final long defaultTimeout = 10;
     //单例
     private static OkHttpConfig instance;
@@ -84,9 +84,9 @@ public class OkHttpConfig {
         Context mContext;
         private boolean isDebug;
         private boolean isCache;
-        //缓存时间
+        //缓存时间（60秒）
         private int cacheTime = 60;
-        //无网络获取缓存时间
+        //无网络获取缓存时间（10秒）
         private int noNetCacheTime = 10;
         //缓存路径
         private String cachePath;
@@ -205,7 +205,7 @@ public class OkHttpConfig {
             addInterceptors();
             setTimeout();
             setDebugConfig();
-            //获取OkHttpClient.Builder
+            //初始化 OkHttpClient
             mOkHttpClient = mOkHttpClientBuilder.build();
             return mOkHttpClient;
         }

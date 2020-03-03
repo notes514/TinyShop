@@ -52,5 +52,5 @@ dependencies {
     //GreenDao(Android 数据库存储)
     implementation 'org.greenrobot:greendao:3.2.2'
     //modlebao(含rxjava2+retrofit2网络请求封装)
-    implementation project(path: ':library')
+    implementation project(path: ':network')
 }

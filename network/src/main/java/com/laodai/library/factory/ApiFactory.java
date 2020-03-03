@@ -1,12 +1,14 @@
 package com.laodai.library.factory;
 
 import com.laodai.library.manger.RxUrlManger;
+import com.laodai.library.retrofit.RetrofitBuilder;
 
 import java.util.HashMap;
 
 import okhttp3.OkHttpClient;
 import retrofit2.CallAdapter;
 import retrofit2.Converter;
+import retrofit2.Retrofit;
 
 /**
  * @ Author     ：laodai
@@ -47,10 +49,6 @@ public class ApiFactory {
         return instance;
     }
 
-    public static <A> String getApiKey(String baseUrlKey, Class<A> apiClass) {
-        return String.format("%s_%s", baseUrlKey, apiClass);
-    }
-
     /**
      * 清除所有缓存
      */
@@ -84,38 +82,24 @@ public class ApiFactory {
         return createApi(urlKey, urlValue, apiClass);
     }
 
+    private static <A> String getApiKey(String baseUrlKey, Class<A> apiClass) {
+        return String.format("%s_%s", baseUrlKey, apiClass);
+    }
+
     public <A> A createApi(String baseUrlKey, String baseUrlValue, Class<A> apiClass) {
         String key = getApiKey(baseUrlKey, apiClass);
         A api = (A) apiServiceCache.get(key);
         if (api == null) {
-//            Retrofit retrofit =
+            Retrofit retrofit = new RetrofitBuilder()
+                    .setBaseUrl(baseUrlValue)
+                    .setCallAdapterFactory(callAdapterFactory)
+                    .setConverterFactory(converterFactory)
+                    .setOkHttpClient(mOkHttpClient)
+                    .build();
+            api = retrofit.create(apiClass);
+            apiServiceCache.put(key, api);
         }
-
-
-        return null;
+        return api;
     }
-
-//    public <A> A createApi(String baseUrlKey, String baseUrlValue, Class<A> apiClass) {
-//        String key = getApiKey(baseUrlKey, apiClass);
-//        A api = (A) apiServiceCache.get(key);
-//        if (api == null) {
-//            Retrofit retrofit = new RetrofitBuilder()
-//                    .setBaseUrl(baseUrlValue)
-//                    .setCallAdapterFactory(callAdapterFactory)
-//                    .setConverterFactory(converterFactory)
-//                    .setOkHttpClient(okHttpClient)
-//                    .build();
-//
-//            api = retrofit.create(apiClass);
-//
-//            apiServiceCache.put(key, api);
-//        }
-//
-//        return api;
-//    }
-//
-//    private static <A> String getApiKey(String baseUrlKey, Class<A> apiClass) {
-//        return String.format("%s_%s", baseUrlKey, apiClass);
-//    }
 
 }
