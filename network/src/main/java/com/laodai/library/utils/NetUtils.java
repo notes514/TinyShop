@@ -21,11 +21,15 @@ public class NetUtils {
      *
      * @return 返回值
      */
+    @SuppressLint("MissingPermission")
     public static boolean isNetworkConnected() {
         Context context = RxHttpUtils.getContext();
         if (context != null) {
             ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            @SuppressLint("MissingPermission") NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+            @SuppressLint("MissingPermission") NetworkInfo networkInfo = null;
+            if (connectivityManager != null) {
+                networkInfo = connectivityManager.getActiveNetworkInfo();
+            }
             if (networkInfo != null) {
                 return networkInfo.isAvailable();
             }

@@ -27,7 +27,7 @@ public class UploadHelper {
      *
      * @param uploadUrl 上传图片的服务器URL
      * @param filePath  图片路径
-     * @return
+     * @return ResponseBody
      */
     public static Observable<ResponseBody> uploadImage(String uploadUrl, String filePath) {
         List<String> filePaths = new ArrayList<>();
@@ -55,7 +55,7 @@ public class UploadHelper {
      * @param filePaths 图片集合路径
      * @return ResponseBody
      */
-    private static Observable<ResponseBody> uploadFilesWithParams(String uploadUrl, String fileName,
+    public static Observable<ResponseBody> uploadFilesWithParams(String uploadUrl, String fileName,
                                                                  Map<String, Object> paramsMap, List<String> filePaths) {
         //创建构建者模式，并设置传输类型
         MultipartBody.Builder builder = new MultipartBody.Builder()
