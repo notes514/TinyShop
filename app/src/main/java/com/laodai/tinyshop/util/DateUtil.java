@@ -19,5 +19,4 @@ public class DateUtil {
     public static String format(Date date, String str) {
         return new SimpleDateFormat(str, LOCALE).format(date);
     }
-
 }

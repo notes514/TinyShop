@@ -17,8 +17,8 @@ import com.laodai.tinyshop.util.ReflectUtil;
  */
 public abstract class BaseMvpFragment
         <P extends BasePresenter, M extends BaseModel> extends BaseFragment {
-    private P mPresenter;
-    private M mModel;
+    protected P mPresenter;
+    protected M mModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,17 +39,11 @@ public abstract class BaseMvpFragment
      */
     protected abstract void initListener();
 
-    /**
-     * 绑定数据
-     */
-    protected abstract void bindData();
-
     @Override
     public void onStart() {
         super.onStart();
         initValidada();
         initListener();
-        bindData();
     }
 
     @Override

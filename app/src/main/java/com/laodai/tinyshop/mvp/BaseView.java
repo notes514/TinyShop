@@ -1,5 +1,7 @@
 package com.laodai.tinyshop.mvp;
 
+import android.content.Context;
+
 /**
  * <pre>
  *     author : laodai
@@ -11,19 +13,20 @@ package com.laodai.tinyshop.mvp;
  */
 public interface BaseView {
 
-    /**
-     * 显示加载
-     */
-    void showLoading();
+//    /**
+//     * 显示加载
+//     */
+//    void showLoading();
+//
+//    /**
+//     * 隐藏加载
+//     */
+//    void hideLoading();
+//
+//    /**
+//     * 加载失败
+//     */
+//    void showError();
 
-    /**
-     * 隐藏加载
-     */
-    void hideLoading();
-
-    /**
-     * 加载失败
-     */
-    void showError();
-
+    Context getContext();
 }

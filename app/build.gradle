@@ -25,6 +25,18 @@ android {
     }
 }
 
+// 用于指定所有aar引用同样版本的support包
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '29.0.2'
+            }
+        }
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -51,6 +63,6 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
     //GreenDao(Android 数据库存储)
     implementation 'org.greenrobot:greendao:3.2.2'
-    //modlebao(含rxjava2+retrofit2网络请求封装)
-    implementation project(path: ':network')
+    //modle(含rxjava2+retrofit2网络请求封装)
+    api project(path: ':network')
 }

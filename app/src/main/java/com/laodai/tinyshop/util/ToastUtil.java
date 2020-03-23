@@ -1,5 +1,6 @@
 package com.laodai.tinyshop.util;
 
+import android.annotation.SuppressLint;
 import android.widget.Toast;
 
 import com.laodai.tinyshop.InitApp;
@@ -16,6 +17,7 @@ import com.laodai.tinyshop.InitApp;
 public class ToastUtil {
     private static Toast mToast;
 
+    @SuppressLint("ShowToast")
     public static void showToast(String text) {
         if (mToast == null) {
             mToast = Toast.makeText(InitApp.getInstance(), text, Toast.LENGTH_SHORT);

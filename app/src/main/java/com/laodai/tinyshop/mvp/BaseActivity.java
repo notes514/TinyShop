@@ -1,5 +1,6 @@
 package com.laodai.tinyshop.mvp;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
@@ -15,7 +16,7 @@ import butterknife.ButterKnife;
  *     author : laodai
  *     e-mail : 851559442@qq.com
  *     time   : 2019/12/06
- *     desc   :
+ *     desc   : 基类Activity
  *     version: 1.0
  * </pre>
  */
@@ -29,26 +30,16 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         ButterKnife.bind(this);
     }
 
+    @Override
+    public Context getContext() {
+        return this;
+    }
+
     /**
      * 获取布局文件
      * @return 返回id
      */
     protected abstract int getLayout();
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
-    }
-
-    @Override
-    public void showError() {
-
-    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

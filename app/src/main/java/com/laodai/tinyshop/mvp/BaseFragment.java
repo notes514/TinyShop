@@ -1,5 +1,6 @@
 package com.laodai.tinyshop.mvp;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,14 +23,14 @@ import butterknife.Unbinder;
  * </pre>
  */
 public abstract class BaseFragment extends Fragment implements BaseView {
+
     private Unbinder unbinder;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root = inflater.inflate(getLayout(), container, false);
-        return root;
+        return inflater.inflate(getLayout(), container, false);
     }
 
     @Override
@@ -38,26 +39,17 @@ public abstract class BaseFragment extends Fragment implements BaseView {
         unbinder = ButterKnife.bind(this, view);
     }
 
+    @Nullable
+    @Override
+    public Context getContext() {
+        return super.getContext();
+    }
+
     /**
      * 获取布局文件
      * @return 返回id
      */
     protected abstract int getLayout();
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
-    }
-
-    @Override
-    public void showError() {
-
-    }
 
     @Override
     public void onDestroy() {
