@@ -4,16 +4,16 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home"
-        android:title="@string/title_home" />
+        android:title="@string/app_buttom_home" />
 
     <item
         android:id="@+id/navigation_dashboard"
         android:icon="@drawable/ic_shopping"
-        android:title="@string/title_shopping" />
+        android:title="@string/app_buttom_shopping" />
 
     <item
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/ic_person"
-        android:title="@string/title_person" />
+        android:title="@string/app_buttom_person" />
 
 </menu>

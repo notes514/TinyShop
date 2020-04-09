@@ -8,18 +8,18 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.laodai.tinyshop.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:label="@string/app_buttom_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.laodai.tinyshop.ui.shoppingcart.ShoppingCartFragment"
-        android:label="@string/title_shopping"
+        android:label="@string/app_buttom_shopping"
         tools:layout="@layout/fragment_shopping_cart" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.laodai.tinyshop.ui.personal.PersonalFragment"
-        android:label="@string/title_person"
+        android:label="@string/app_buttom_person"
         tools:layout="@layout/fragment_personal" />
 </navigation>
