@@ -1,17 +1,17 @@
-package com.laodai.tinyshop.mvp;
+package com.laodai.mvp.base;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import com.laodai.tinyshop.util.ReflectUtil;
+import com.laodai.mvp.utils.ReflectUtil;
 
 /**
  * <pre>
  *     author : laodai
  *     e-mail : 851559442@qq.com
  *     time   : 2019/12/06
- *     desc   :
+ *     desc   : mvp基类fragment
  *     version: 1.0
  * </pre>
  */

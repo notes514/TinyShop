@@ -82,7 +82,7 @@ public class InitApp extends Application {
                 .setCookieType(new SPCookieStore(this))
                 //全局超时配置
                 .setReadTimeout(10)
-                //全局超时佩奇
+                //全局超时配置
                 .setWriteTimeout(10)
                 //全局超时配置
                 .setConnectTimeout(10)

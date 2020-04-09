@@ -2,8 +2,8 @@ package com.laodai.tinyshop.ui.shoppingcart;
 
 import android.widget.TextView;
 
+import com.laodai.mvp.base.BaseMvpFragment;
 import com.laodai.tinyshop.R;
-import com.laodai.tinyshop.mvp.BaseMvpFragment;
 
 import butterknife.BindView;
 

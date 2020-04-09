@@ -1,4 +1,4 @@
-package com.laodai.tinyshop.mvp;
+package com.laodai.mvp.base;
 
 import android.content.Context;
 
@@ -13,20 +13,10 @@ import android.content.Context;
  */
 public interface BaseView {
 
-//    /**
-//     * 显示加载
-//     */
-//    void showLoading();
-//
-//    /**
-//     * 隐藏加载
-//     */
-//    void hideLoading();
-//
-//    /**
-//     * 加载失败
-//     */
-//    void showError();
-
+    /**
+     * 获取上下文
+     * @return Context
+     */
     Context getContext();
+
 }

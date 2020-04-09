@@ -1,7 +1,7 @@
 package com.laodai.tinyshop.ui.login;
 
+import com.laodai.mvp.base.BaseMvpActivity;
 import com.laodai.tinyshop.R;
-import com.laodai.tinyshop.mvp.BaseMvpActivity;
 
 public class LoginActivity extends BaseMvpActivity<LoginPresenterImpl, LoginModelImpl>
         implements LoginContract.LoginView {

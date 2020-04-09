@@ -1,4 +1,4 @@
-package com.laodai.tinyshop.mvp;
+package com.laodai.mvp.base;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.KeyEvent;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.laodai.tinyshop.util.ToastUtil;
+import com.laodai.mvp.utils.ToastUtil;
 
 import butterknife.ButterKnife;
 
@@ -57,7 +57,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         boolean timeout = (mTimeout == -1 || (System.currentTimeMillis() - mTimeout) > time);
         if (mFlag && (mFlag != flag || timeout)) {
             mTimeout = System.currentTimeMillis();
-            ToastUtil.showToast("再点击一次回到桌面");
+            ToastUtil.showToast(this, "再点击一次回到桌面");
             return true;
         }
         return !mFlag;

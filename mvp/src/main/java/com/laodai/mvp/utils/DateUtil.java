@@ -1,4 +1,4 @@
-package com.laodai.tinyshop.util;
+package com.laodai.mvp.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

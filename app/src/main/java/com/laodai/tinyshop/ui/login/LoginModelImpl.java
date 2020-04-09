@@ -1,7 +1,7 @@
 package com.laodai.tinyshop.ui.login;
 
+import com.laodai.mvp.base.MyListener;
 import com.laodai.tinyshop.entity.User;
-import com.laodai.tinyshop.mvp.MyListener;
 
 /**
  * <pre>

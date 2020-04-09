@@ -1,7 +1,7 @@
 package com.laodai.tinyshop.ui.login;
 
+import com.laodai.mvp.base.MyListener;
 import com.laodai.tinyshop.entity.User;
-import com.laodai.tinyshop.mvp.MyListener;
 
 /**
  * <pre>
@@ -18,17 +18,13 @@ public class LoginPresenterImpl extends LoginContract.LoginPresenter {
     protected void login(String name, String password) {
         mModel.login(name, password, new MyListener<User>() {
             @Override
-            public void onCompleted() {
+            public void onSuccess(User result) {
+
             }
 
             @Override
             public void onError(String errorMsg) {
 
-            }
-
-            @Override
-            public void onNext(User result) {
-                getView().loginSuccess();
             }
         });
     }

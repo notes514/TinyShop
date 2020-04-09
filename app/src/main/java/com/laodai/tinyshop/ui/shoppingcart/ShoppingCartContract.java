@@ -1,9 +1,8 @@
 package com.laodai.tinyshop.ui.shoppingcart;
 
-
-import com.laodai.tinyshop.mvp.BaseModel;
-import com.laodai.tinyshop.mvp.BasePresenter;
-import com.laodai.tinyshop.mvp.BaseView;
+import com.laodai.mvp.base.BaseModel;
+import com.laodai.mvp.base.BasePresenter;
+import com.laodai.mvp.base.BaseView;
 
 /**
  * <pre>

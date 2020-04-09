@@ -1,7 +1,7 @@
 package com.laodai.tinyshop.ui.personal;
 
+import com.laodai.mvp.base.BaseMvpFragment;
 import com.laodai.tinyshop.R;
-import com.laodai.tinyshop.mvp.BaseMvpFragment;
 
 public class PersonalFragment extends BaseMvpFragment<PersonalPresenterImpl, PersonalModelImpl>
         implements PersonalContract.PersonalView {

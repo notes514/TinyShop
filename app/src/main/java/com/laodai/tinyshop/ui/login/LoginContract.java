@@ -1,10 +1,10 @@
 package com.laodai.tinyshop.ui.login;
 
+import com.laodai.mvp.base.BaseModel;
+import com.laodai.mvp.base.BasePresenter;
+import com.laodai.mvp.base.BaseView;
+import com.laodai.mvp.base.MyListener;
 import com.laodai.tinyshop.entity.User;
-import com.laodai.tinyshop.mvp.BaseModel;
-import com.laodai.tinyshop.mvp.BasePresenter;
-import com.laodai.tinyshop.mvp.BaseView;
-import com.laodai.tinyshop.mvp.MyListener;
 
 /**
  * <pre>
